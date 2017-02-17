@@ -66,11 +66,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
         guard let jsPath = Bundle.main.path(forResource: "injected-js-file", ofType: "js") else { return }
         
         // Nowadays Apple recommends using WebKit to embed web views and inject JS but this example should work in both UIWebView & WKWebView
-        if let javascript = try? String(contentsOfFile: jsPath, encoding: String.Encoding.utf8),
-            let injectionResult = webView.stringByEvaluatingJavaScript(from: javascript) {
-            
+        if let javascriptTakeOverCode = try? String(contentsOfFile: jsPath, encoding: String.Encoding.utf8),
+        // This JS injection not only helps to add methods that the owner never implemented, it also helps to send messages from the native components to the web components.
+        let injectionResult = webView.stringByEvaluatingJavaScript(from: javascriptTakeOverCode) {
             print(injectionResult)
-            statusLabel.text = "(JS injected and observes)"
         }
     }
 }
