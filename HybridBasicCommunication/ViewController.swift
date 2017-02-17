@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-// This project domnstrate how the Codrvova plugins work, the communication is possible by simply passing messages through the web view delegate.
+// This project demonstrates how Codrvova plugins work, native and web communication can be achieved by simply passing messages through the web view delegate.
 class ViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
