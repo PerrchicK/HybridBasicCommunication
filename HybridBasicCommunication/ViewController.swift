@@ -14,6 +14,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var statusLabel: UILabel!
+    
+    lazy var jsReporterPrefix: String = {
+        return "perrchick://js-reporter/?"
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,10 +48,11 @@ class ViewController: UIViewController, UIWebViewDelegate {
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         guard let urlString = request.url?.absoluteString else { return false }
         
-        let reportFromJsContainer = urlString.components(separatedBy: "http://js-reporter/?")
-        if reportFromJsContainer.count > 1, let reportFromJs = reportFromJsContainer.last, let cleanReportFromJs = reportFromJs.removingPercentEncoding {
+        let urlStringComponents = urlString.components(separatedBy: jsReporterPrefix)
+        // extract report from if exists
+        if urlStringComponents.count > 1, let reportFromJs = urlStringComponents.last, let cleanReportFromJs = reportFromJs.removingPercentEncoding {
             // Recognized a report from the JS code, comsume the report and do not navigate
-            let reportString = "injected JS says: '\(cleanReportFromJs)'"
+            let reportString = "injected JS says: \"\(cleanReportFromJs)\""
             statusLabel.text = reportString
             print(reportString)
             return false
