@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -35,24 +35,33 @@
                                 </connections>
                             </button>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyT-8D-ccb">
-                                <rect key="frame" x="16" y="64.5" width="343" height="592.5"/>
+                                <rect key="frame" x="0.0" y="64.5" width="375" height="568"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gPC-Nj-7s8">
+                                <rect key="frame" x="26" y="642.5" width="323" height="14.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.84895833333333337" green="0.84895833333333337" blue="0.84895833333333337" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dm6-rc-8E7" firstAttribute="centerX" secondItem="Z87-sD-j1h" secondAttribute="centerX" id="1gv-Jt-JdQ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gPC-Nj-7s8" secondAttribute="bottom" constant="10" id="6lS-ee-bdg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Z87-sD-j1h" secondAttribute="trailing" constant="10" id="AGY-ST-5UZ"/>
                             <constraint firstItem="Z87-sD-j1h" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="BUB-64-FKz"/>
                             <constraint firstItem="dm6-rc-8E7" firstAttribute="top" secondItem="Z87-sD-j1h" secondAttribute="bottom" id="Itq-uI-C4P"/>
-                            <constraint firstItem="qyT-8D-ccb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="LpE-e3-Q8y"/>
+                            <constraint firstItem="qyT-8D-ccb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="LpE-e3-Q8y"/>
                             <constraint firstItem="Z87-sD-j1h" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="Wi8-6G-p5L"/>
                             <constraint firstItem="qyT-8D-ccb" firstAttribute="top" secondItem="dm6-rc-8E7" secondAttribute="bottom" id="bFn-bQ-V9S"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qyT-8D-ccb" secondAttribute="trailing" id="uej-lK-miy"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="qyT-8D-ccb" secondAttribute="bottom" constant="10" id="uoe-tW-VYR"/>
+                            <constraint firstItem="gPC-Nj-7s8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="10" id="d46-DZ-2rP"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gPC-Nj-7s8" secondAttribute="trailing" constant="10" id="peo-h2-How"/>
+                            <constraint firstItem="gPC-Nj-7s8" firstAttribute="top" secondItem="qyT-8D-ccb" secondAttribute="bottom" constant="10" id="qXy-as-c8m"/>
+                            <constraint firstAttribute="trailing" secondItem="qyT-8D-ccb" secondAttribute="trailing" id="uej-lK-miy"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentAddressLabel" destination="gPC-Nj-7s8" id="FpR-Ua-yLM"/>
                         <outlet property="statusLabel" destination="Z87-sD-j1h" id="yfU-BE-BJk"/>
                         <outlet property="webView" destination="qyT-8D-ccb" id="IVF-gv-qs4"/>
                     </connections>

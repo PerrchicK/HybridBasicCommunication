@@ -26,7 +26,11 @@ function injectOnClickReporters() {
         buttonTags[0].onclick = swizzleAndMaintain(buttonTags[0].onclick, function() {
                                                    report(document.getElementById("txtInput").value);
                                                    });
-        result += ", listening to button clicks";
+        if (result) {
+            result += ", listening to button clicks";
+        } else {
+            result = "listening to button clicks";
+        }
     }
 
     if (result) {

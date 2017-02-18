@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import WebKit
 
 // This project demonstrates how Codrvova plugins work, native and web communication can be achieved by simply passing messages through the web view delegate.
 class ViewController: UIViewController, UIWebViewDelegate {
@@ -16,6 +15,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
     // but this example should work in both UIWebView & WKWebView
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var currentAddressLabel: UILabel!
     
     lazy var jsReporterPrefix: String = {
         return "perrchick://js-reporter/?"
@@ -24,6 +24,8 @@ class ViewController: UIViewController, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        webView.sizeToFit()
+        webView.backgroundColor = UIColor.clear
         webView.delegate = self
     }
    
@@ -46,7 +48,7 @@ class ViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - UIWebViewDelegate
 
-    // This is the main reason why this "magic" works, the web page (using JS) communicates through a navigation it "tries" to make, by design it delivers a message
+    // This is the main reason why this "magic" works, the web page (thanks to JS) communicates through a navigation it "tries" to make, by design it delivers a message
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         guard let urlString = request.url?.absoluteString else { return false }
         
@@ -71,6 +73,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
         // This JS injection not only helps to add methods that the owner never implemented, it also helps to send messages from the native components to the web components.
         let injectionResult = webView.stringByEvaluatingJavaScript(from: javascriptTakeOverCode) {
             print(injectionResult)
+        }
+
+        if let currentAddress = webView.request?.url?.absoluteString {
+            currentAddressLabel.text = currentAddress
         }
     }
 }

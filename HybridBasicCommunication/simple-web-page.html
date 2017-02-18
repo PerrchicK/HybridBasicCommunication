@@ -10,48 +10,66 @@
                 font-size: 1.1em;
                 color: #333;
             }
-        @media screen and (min-width: 40em) {
-            body {
-                width: 40em;
+            @media screen and (min-width: 40em) {
+                body {
+                    width: 40em;
+                }
             }
-        }
-        h1, h2, h3 {
-            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-            font-weight: 300;
-        }
-        h1 {
-            margin: 1em 0;
-            padding: 0 0 0.25em 0;
-            border-bottom: 1px dotted #ccc;
+            h1, h2, h3 {
+                font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+                font-weight: 300;
+            }
+            h1 {
+                margin: 1em 0;
+                padding: 0 0 0.25em 0;
+                border-bottom: 1px dotted #ccc;
+                text-align: center;
+                font-size: 2em;
+                line-height: 1.1em;
+            }
+            p {
+                margin: 0 0 0.5em 0;
+                line-height: 1.8em;
+            }
+            code {
+                display: inline-block;
+                padding: 0.1em;
+                background-color: #F8F8F8;
+                border: 1px solid #DDD;
+                border-radius: 3px;
+                font-family: Consolas,"Liberation Mono",Courier,monospace;
+                line-height: 1;
+            }
+        div.centered-content {
             text-align: center;
-            font-size: 2em;
-            line-height: 1.1em;
-        }
-        p {
-            margin: 0 0 0.5em 0;
-            line-height: 1.8em;
-        }
-        code {
-            display: inline-block;
-            padding: 0.1em;
-            background-color: #F8F8F8;
-            border: 1px solid #DDD;
-            border-radius: 3px;
-            font-family: Consolas,"Liberation Mono",Courier,monospace;
-            font-size: 0.9em;
-            line-height: 1;
         }
         </style>
     </head>
     <body>
         <h1>Some Web Page</h1>
         
-        <input type="text" id="txtInput" value=""/>
-        <button onclick="document.getElementById('txtInput').value = ''">Clear text</button>
-        <br/>
-        <center><img src="https://perrys-81349.firebaseapp.com/yaaraMann/img/collections/press/presse(1).jpg" alt="lovely pic" style="width: 75%"></center>
-        <br/>
-        <p>The page should communicate through the <code>UIWebViewDelegate</code> and demonstrate the "magic", if the javascript will fulfil its part</p>
+        <div class="centered-content">
+            <input type="text" id="txtInput" value=""/>
+            <button onclick="document.getElementById('txtInput').value = ''">Clear text</button>
+            <br/>
+            <img src="https://perrys-81349.firebaseapp.com/yaaraMann/img/collections/press/presse(1).jpg" alt="lovely pic" style="width: 75%; padding: 10px 0px 0px 0px">
+            <br/>
+            <p>This page can communicate and demonstrate the "magic", if the javascript code will fulfil its part</p>
+        </div>
+
+        <h1>The solution</h1>
+        <p>The main idea is to deliberately ask to navigate to a non-existing address and to put a message withing the request. The app ,that suppose to handle this request before navigation will start, should extract the messages and prevent from the hosted web view to accept this request.</p>
+        To intercept unwanted navigation, we can use some handler that will help us to decide:
+        <ul>
+            <li>
+                <p>In <a href="https://developer.apple.com/reference/uikit/uiwebviewdelegate">iOS</a> we use the <code>UIWebViewDelegate.shouldStartLoadWith(..)</code> to do so.</p>
+            </li>
+            <li>
+                <p>In <a href="https://developer.android.com/guide/webapps/webview.html">Android</a> we can use the <code>WebViewClient.shouldOverrideUrlLoading(..)</code> to do so.</p>
+            </li>
+        </ul>
+
+        Enjoy :)
     </body>
     
     <script>
