@@ -12,6 +12,8 @@ import WebKit
 // This project demonstrates how Codrvova plugins work, native and web communication can be achieved by simply passing messages through the web view delegate.
 class ViewController: UIViewController, UIWebViewDelegate {
     
+    // Nowadays Apple recommends using WebKit to embed web in apps,
+    // but this example should work in both UIWebView & WKWebView
     @IBOutlet weak var webView: UIWebView!
     @IBOutlet weak var statusLabel: UILabel!
     
@@ -61,11 +63,10 @@ class ViewController: UIViewController, UIWebViewDelegate {
         return true
     }
 
-    // Having fun and injecting a JS listeners
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        guard let jsPath = Bundle.main.path(forResource: "injected-js-file", ofType: "js") else { return }
+        guard let jsPath = Bundle.main.path(forResource: "js-code-to-inject", ofType: "js") else { return }
         
-        // Nowadays Apple recommends using WebKit to embed web views and inject JS but this example should work in both UIWebView & WKWebView
+        // Just for fun, injecting a JS listener. The right way would be to originally include this code from the first place, inside the HTML / embedded JS section.
         if let javascriptTakeOverCode = try? String(contentsOfFile: jsPath, encoding: String.Encoding.utf8),
         // This JS injection not only helps to add methods that the owner never implemented, it also helps to send messages from the native components to the web components.
         let injectionResult = webView.stringByEvaluatingJavaScript(from: javascriptTakeOverCode) {

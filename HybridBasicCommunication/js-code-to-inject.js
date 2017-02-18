@@ -1,5 +1,4 @@
-// some injected javascript section
-function injectClickReporters() {
+function injectOnClickReporters() {
     var result = null;
     var imageTags = document.getElementsByTagName("img");
     var buttonTags = document.getElementsByTagName("button");
@@ -45,13 +44,16 @@ function report(reportString) {
     document.location = jsReporterPrefix + reportString;
 }
 
+// To avoid harm on the expected behaviour
 function swizzleAndMaintain(oldFunc, newFunc) {
     // guard-like (from Swift)
     if (!newFunc) { return oldFunc }
+    if (!oldFunc) { return newFunc }
+
     return function() {
         newFunc();
         if (oldFunc) oldFunc();
     };
 }
 
-injectClickReporters();
+injectOnClickReporters();

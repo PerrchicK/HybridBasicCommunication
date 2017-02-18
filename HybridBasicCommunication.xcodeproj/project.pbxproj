@@ -14,7 +14,7 @@
 		75FE5A9E1E5570B40041E524 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75FE5A9C1E5570B40041E524 /* LaunchScreen.storyboard */; };
 		75FE5AA91E5570B40041E524 /* HybridBasicCommunicationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE5AA81E5570B40041E524 /* HybridBasicCommunicationTests.swift */; };
 		75FE5AB41E5570B40041E524 /* HybridBasicCommunicationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75FE5AB31E5570B40041E524 /* HybridBasicCommunicationUITests.swift */; };
-		75FE5AC31E5572DB0041E524 /* injected-js-file.js in Resources */ = {isa = PBXBuildFile; fileRef = 75FE5AC11E5572DB0041E524 /* injected-js-file.js */; };
+		75FE5AC31E5572DB0041E524 /* js-code-to-inject.js in Resources */ = {isa = PBXBuildFile; fileRef = 75FE5AC11E5572DB0041E524 /* js-code-to-inject.js */; };
 		75FE5AC41E5572DB0041E524 /* simple-web-page.html in Resources */ = {isa = PBXBuildFile; fileRef = 75FE5AC21E5572DB0041E524 /* simple-web-page.html */; };
 /* End PBXBuildFile section */
 
@@ -49,7 +49,7 @@
 		75FE5AAF1E5570B40041E524 /* HybridBasicCommunicationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HybridBasicCommunicationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75FE5AB31E5570B40041E524 /* HybridBasicCommunicationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HybridBasicCommunicationUITests.swift; sourceTree = "<group>"; };
 		75FE5AB51E5570B40041E524 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		75FE5AC11E5572DB0041E524 /* injected-js-file.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "injected-js-file.js"; sourceTree = "<group>"; };
+		75FE5AC11E5572DB0041E524 /* js-code-to-inject.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "js-code-to-inject.js"; sourceTree = "<group>"; };
 		75FE5AC21E5572DB0041E524 /* simple-web-page.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "simple-web-page.html"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +101,7 @@
 		75FE5A921E5570B40041E524 /* HybridBasicCommunication */ = {
 			isa = PBXGroup;
 			children = (
-				75FE5AC11E5572DB0041E524 /* injected-js-file.js */,
+				75FE5AC11E5572DB0041E524 /* js-code-to-inject.js */,
 				75FE5AC21E5572DB0041E524 /* simple-web-page.html */,
 				75FE5A931E5570B40041E524 /* AppDelegate.swift */,
 				75FE5A951E5570B40041E524 /* ViewController.swift */,
@@ -245,7 +245,7 @@
 				75FE5A9B1E5570B40041E524 /* Assets.xcassets in Resources */,
 				75FE5AC41E5572DB0041E524 /* simple-web-page.html in Resources */,
 				75FE5A991E5570B40041E524 /* Main.storyboard in Resources */,
-				75FE5AC31E5572DB0041E524 /* injected-js-file.js in Resources */,
+				75FE5AC31E5572DB0041E524 /* js-code-to-inject.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -520,6 +520,7 @@
 				75FE5ABA1E5570B40041E524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75FE5ABB1E5570B40041E524 /* Build configuration list for PBXNativeTarget "HybridBasicCommunicationTests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +529,7 @@
 				75FE5ABD1E5570B40041E524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		75FE5ABE1E5570B40041E524 /* Build configuration list for PBXNativeTarget "HybridBasicCommunicationUITests" */ = {
 			isa = XCConfigurationList;
@@ -536,6 +538,7 @@
 				75FE5AC01E5570B40041E524 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
