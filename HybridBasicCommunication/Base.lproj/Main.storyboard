@@ -28,8 +28,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dm6-rc-8E7">
-                                <rect key="frame" x="165.5" y="34.5" width="43" height="30"/>
-                                <state key="normal" title="reload"/>
+                                <rect key="frame" x="103.5" y="34.5" width="167" height="30"/>
+                                <state key="normal" title="let's go back to the start"/>
                                 <connections>
                                     <action selector="reloadButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jTa-RX-nfB"/>
                                 </connections>
