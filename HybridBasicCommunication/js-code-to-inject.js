@@ -41,7 +41,7 @@ function injectOnClickReporters() {
     }
     
     setTimeout(function() {
-               sendMessageToNative("sayWithMessage:invoked from JS ;-)");
+               sendMessageToNative("alertWithMessage:invoked from JS ;-)");
                }, 1000);
 
     return result;

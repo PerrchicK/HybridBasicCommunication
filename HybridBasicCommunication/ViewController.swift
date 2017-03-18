@@ -9,7 +9,7 @@
 import UIKit
 
 protocol InjectedJsProtocol {
-    func say(message: String)
+    func alert(message: String)
     func reportToAnalytics(event: [String:Any])
 }
 
@@ -133,7 +133,7 @@ class ViewController: UIViewController, UIWebViewDelegate, InjectedJsProtocol {
         print("reporting: \(event)")
     }
     
-    func say(message: String) {
+    func alert(message: String) {
         let alertController = UIAlertController(title: "Message from JS", message: message, preferredStyle: UIAlertControllerStyle.alert)
         alertController.addAction(UIAlertAction(title: "cool", style: UIAlertActionStyle.cancel, handler: nil))
         
