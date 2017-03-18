@@ -45,6 +45,15 @@
         }
         </style>
     </head>
+    <script>
+        var images = ["Flash-Logo.gif", "tron.jpg", "android-tron.jpg"];
+        var baseUrl = 'https://perrys-81349.firebaseapp.com/';
+        var clicksCounter = 0;
+        
+        function togglePhoto() {
+            document.getElementById('imageContainer').src = baseUrl + images[(++clicksCounter) % images.length];
+        }
+    </script>
     <body>
         <h1>Some Web Page</h1>
         
@@ -52,7 +61,7 @@
             <input type="text" id="txtInput" value=""/>
             <button onclick="document.getElementById('txtInput').value = ''">Clear text</button>
             <br/>
-            <img src="https://perrys-81349.firebaseapp.com/Flash-Logo.gif" alt="lovely pic" style="width: 75%; padding: 10px 0px 0px 0px">
+            <img id="imageContainer" onclick="togglePhoto()" src="https://perrys-81349.firebaseapp.com/Flash-Logo.gif" alt="lovely pic" style="width: 75%; padding: 10px 0px 0px 0px">
             <br/>
             <p>This page can communicate and demonstrate the "magic", if the javascript code will fulfil its part</p>
         </div>

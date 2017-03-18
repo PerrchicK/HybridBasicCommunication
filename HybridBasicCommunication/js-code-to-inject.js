@@ -14,7 +14,8 @@ function injectOnClickReporters() {
         if (foundImageTag) {
             // "swizzle" methods to maintain the previous behaviour
             foundImageTag.onclick = swizzleAndMaintain(foundImageTag.onclick, function() {
-                                                       report("clicked-on-image");
+                                                       var timestamp = new Date().getTime();
+                                                       sendMessageToNative("reportToAnalyticsWithEvent:<event-name;clicked-on-image,event-time;" + timestamp + ">");
                                                        });
             result = "listening to image clicks";
         }
@@ -24,7 +25,7 @@ function injectOnClickReporters() {
         // "swizzle" methods to maintain the previous behaviour
         var oldFunc = buttonTags[0].onclick;
         buttonTags[0].onclick = swizzleAndMaintain(buttonTags[0].onclick, function() {
-                                                   report(document.getElementById("txtInput").value);
+                                                   sendMessageToNative(document.getElementById("txtInput").value);
                                                    });
         if (result) {
             result += ", listening to button clicks";
@@ -34,17 +35,21 @@ function injectOnClickReporters() {
     }
 
     if (result) {
-        report("I'm in...");
+        sendMessageToNative("I'm in...");
     } else {
         result = "failed to listen...";
     }
+    
+    setTimeout(function() {
+               sendMessageToNative("sayWithMessage:invoked from JS ;-)");
+               }, 1000);
 
     return result;
 }
 
 var jsReporterPrefix = "perrchick://js-reporter/?";
 
-function report(reportString) {
+function sendMessageToNative(reportString) {
     document.location = jsReporterPrefix + reportString;
 }
 

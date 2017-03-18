@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol InjectedJsProtocol {
+    func say(message: String)
+    func reportToAnalytics(event: [String:Any])
+}
+
 // This project demonstrates how Codrvova plugins work, native and web communication can be achieved by simply passing messages through the web view delegate.
-class ViewController: UIViewController, UIWebViewDelegate {
-    
+class ViewController: UIViewController, UIWebViewDelegate, InjectedJsProtocol {
+
     // Nowadays Apple recommends using WebKit to embed web in apps,
     // but this example should work in both UIWebView & WKWebView
     @IBOutlet weak var webView: UIWebView!
@@ -58,7 +63,9 @@ class ViewController: UIViewController, UIWebViewDelegate {
             // Recognized a report from the JS code, comsume the report and do not navigate
             let reportString = "injected JS says: \"\(cleanReportFromJs)\""
             statusLabel.text = reportString
-            print(reportString)
+
+            print("\(handleJsReport(invocationFromJs: cleanReportFromJs) ? "handled" : "failed to handle"): \(cleanReportFromJs)")
+
             return false
         }
         
@@ -78,5 +85,65 @@ class ViewController: UIViewController, UIWebViewDelegate {
         if let currentAddress = webView.request?.url?.absoluteString {
             currentAddressLabel.text = currentAddress
         }
+    }
+
+    /// A helper closure to build a selector from a String object
+    private let selectorFromString: (String) -> (Selector) = {
+        let _selector: Selector = NSSelectorFromString($0)
+        return _selector
+    }
+
+    private func selector(withName selectorName: String) -> Selector? {
+        let selector: Selector = selectorFromString(selectorName)
+        // To prevent an NSInvalidArgumentException
+        guard responds(to: selector) else { return nil }
+
+        return selector
+    }
+    
+    func handleJsReport(invocationFromJs: String) -> Bool {
+        let methodCall = invocationFromJs.components(separatedBy: ":")
+
+        if let arg = methodCall[safe: 1] {
+            guard let selectorFromJs = selector(withName: "\(methodCall[0]):") else { return false }
+            if arg.hasPrefix("<") && arg.hasSuffix(">") {
+                // has list
+                var args: [String: Any] = [:]
+                let cleanList = arg.trimmingCharacters(in: CharacterSet(charactersIn: "<>"))
+                let arguments = cleanList.components(separatedBy: ",")
+                for argument in arguments {
+                    let argumentWithKey = argument.components(separatedBy: ";")
+                    args[argumentWithKey[0]] = argumentWithKey[1]
+                }
+                perform(selectorFromJs, with: args)
+            } else {
+                perform(selectorFromJs, with: arg)
+            }
+        } else {
+            guard let selectorFromJs = selector(withName: invocationFromJs) else { return false }
+            perform(selectorFromJs)
+        }
+
+        return true
+    }
+
+    //MARK: - InjectedJsProtocol implementation
+
+    internal func reportToAnalytics(event: [String : Any]) {
+        print("reporting: \(event)")
+    }
+    
+    func say(message: String) {
+        let alertController = UIAlertController(title: "Message from JS", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "cool", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension Collection where Indices.Iterator.Element == Index {
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Generator.Element? {
+        return indices.contains(index) ? self[index] : nil
     }
 }
