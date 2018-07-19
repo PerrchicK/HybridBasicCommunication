@@ -1,7 +1,7 @@
 # Hybrid Basic Communication Example
 A simple demonstration (in iOS) of the basic communication between the web parts the native parts in hybrid apps.
 
-Mobile applications with main features runinng on web pages called hybrid applications, it gives their owners the ability to change visibility and behaviour without the need to update the app from the store. A hybrid application hosts a web view that aware of the fact that it's being hosted and communicates with the hosting app. The first popular framework that made it possible made by [PhoneGap](http://phonegap.com/), using [Cordova](https://cordova.apache.org/) library, they supplied an easy communication between the web components and the native components.
+Mobile applications with main features runinng on web pages called hybrid applications, it gives their owners the ability to change visibility and behaviour without the need to update the app from the store. An hybrid application typically hosts a web view that aware of the fact that it's being hosted and communicates with the hosting app. The first popular framework that made it possible made by [PhoneGap](http://phonegap.com/), using [Cordova](https://cordova.apache.org/) library, they supplied an easy communication between the web components and the native components, and expanded this ability by creating [plugins](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins).
 
 This is a lite project which demonstrates (in iOS) the basic communication I described above.
 
